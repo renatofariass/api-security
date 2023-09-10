@@ -28,10 +28,10 @@ Com o projeto clonado, abra ele na IDE.
     
     ```yaml
     spring:  
-    	datasource:
-    		url: jdbc:postgresql://localhost:5432/nome-do-seu-banco # altere aqui o nome do banco
-    		username: ${USERNAME}    
-    		password: ${PASSWORD}
+        datasource:
+            url: jdbc:postgresql://localhost:5432/nome-do-seu-banco # altere aqui o nome do banco
+            username: ${USERNAME}    
+            password: ${PASSWORD}
     ```
     
 2. Certifique-se de que o PostgreSQL esteja em execução.
