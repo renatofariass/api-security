@@ -15,22 +15,17 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/product")
 public class ProductController {
-
-    @Autowired
-    ProductRepository repository;
     @Autowired
     ProductService service;
 
     @PostMapping
-    public ResponseEntity<Void> postProduct(@RequestBody @Valid ProductRequestDto data){
-        Product newProduct = new Product(data);
-
-        this.repository.save(newProduct);
+    public ResponseEntity<Void> postProduct(@RequestBody @Valid ProductRequestDto data) {
+        service.insert(data);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(){
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
         List<ProductResponseDTO> productList = service.findAll();
 
         return ResponseEntity.ok(productList);

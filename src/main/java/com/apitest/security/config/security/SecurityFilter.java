@@ -1,4 +1,4 @@
-package com.apitest.security.infra.security;
+package com.apitest.security.config.security;
 
 import com.apitest.security.repositories.UserRepository;
 import jakarta.servlet.FilterChain;

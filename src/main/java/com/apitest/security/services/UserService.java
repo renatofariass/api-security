@@ -2,6 +2,7 @@ package com.apitest.security.services;
 
 import com.apitest.security.domain.user.RegisterDto;
 import com.apitest.security.domain.user.User;
+import com.apitest.security.domain.user.UserRole;
 import com.apitest.security.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +18,7 @@ public class UserService {
 
     public void insert(RegisterDto data) {
         String bCryptPassword = passwordEncoder.encode(data.password());
-        User user  = new User(data.login(), bCryptPassword, data.userRole());
+        User user  = new User(data.login(), bCryptPassword, UserRole.USER);
         repository.save(user);
     }
 

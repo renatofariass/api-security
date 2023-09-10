@@ -4,7 +4,7 @@ import com.apitest.security.domain.user.AuthenticationDto;
 import com.apitest.security.domain.user.LoginResponseDto;
 import com.apitest.security.domain.user.RegisterDto;
 import com.apitest.security.domain.user.User;
-import com.apitest.security.infra.security.TokenService;
+import com.apitest.security.config.security.TokenService;
 import com.apitest.security.services.UserService;
 import com.apitest.security.services.exceptions.BadRequestException;
 import jakarta.validation.Valid;
@@ -31,18 +31,18 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Valid AuthenticationDto data) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(),
-                data.password());
+    public ResponseEntity<LoginResponseDto> login(@RequestBody @Valid AuthenticationDto data) {
+        var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var authenticate = authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateToken((User) authenticate.getPrincipal());
-        return ResponseEntity.ok().body(token);
+
+        return ResponseEntity.ok().body(new LoginResponseDto(token));
     }
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody @Valid RegisterDto data) {
         if (service.findByUserLogin(data.login()) != null) {
-            throw new BadRequestException("bad request, you are already a user");
+            throw new BadRequestException("bad request, you are already a user.");
         }
         service.insert(data);
         return ResponseEntity.ok().build();

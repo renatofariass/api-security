@@ -15,15 +15,15 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String login;
-    private String senha;
+    private String password;
     private UserRole role;
 
     public User() {
     }
 
-    public User(String login, String senha, UserRole role) {
+    public User(String login, String password, UserRole role) {
         this.login = login;
-        this.senha = senha;
+        this.password = password;
         this.role = role;
     }
 
@@ -42,7 +42,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return senha;
+        return password;
     }
 
     @Override
@@ -86,12 +86,8 @@ public class User implements UserDetails {
         this.login = login;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public UserRole getRole() {
