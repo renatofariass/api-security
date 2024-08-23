@@ -17,7 +17,7 @@ Certifique-se de ter o seguinte instalado em sua máquina antes de iniciar:
 Para clonar este projeto, execute o seguinte comando no seu terminal:
 
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
+git clone https://github.com/renatofariass/api-security.git
 ```
 
 Com o projeto clonado, abra ele na IDE.
